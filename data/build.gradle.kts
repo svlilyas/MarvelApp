@@ -36,9 +36,9 @@ android {
             )
 
             // BuildConfigField
-            stringField(Fields.SERVICE_URL to "https://api.openweathermap.org/data/")
-            stringField(Fields.SERVICE_API_KEY to "")
-            stringField(Fields.SERVICE_CERTIFICATE_PATH to "")
+            stringField(Fields.SERVICE_URL to "https://gateway.marvel.com:443/")
+            stringField(Fields.SERVICE_API_KEY to "781ef9ef74b9ff4d6134ea69cdd8e190")
+            stringField(Fields.SERVICE_PRIVATE_KEY to "1fe45ac9c78c3131d770d861099892a4b89e0946")
         }
     }
 
@@ -51,9 +51,9 @@ android {
             )
 
             // BuildConfigField
-            stringField(Fields.SERVICE_URL to "https://api.openweathermap.org/data/")
-            stringField(Fields.SERVICE_API_KEY to "")
-            stringField(Fields.SERVICE_CERTIFICATE_PATH to "")
+            stringField(Fields.SERVICE_URL to "https://gateway.marvel.com:443/")
+            stringField(Fields.SERVICE_API_KEY to "781ef9ef74b9ff4d6134ea69cdd8e190")
+            stringField(Fields.SERVICE_PRIVATE_KEY to "1fe45ac9c78c3131d770d861099892a4b89e0946")
         }
     }
 }

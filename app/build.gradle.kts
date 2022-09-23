@@ -84,10 +84,6 @@ android {
                 "app_label_name",
                 "${AndroidConfig.APP_NAME}$versionNameSuffix"
             )
-            // BuildConfigField
-            stringField(Fields.SERVICE_URL to "https://api.openweathermap.org/data/")
-            stringField(Fields.SERVICE_API_KEY to "")
-            stringField(Fields.SERVICE_CERTIFICATE_PATH to "")
         }
 
         // uat
@@ -101,10 +97,6 @@ android {
                 "app_label_name",
                 "${AndroidConfig.APP_NAME}$versionNameSuffix"
             )
-            // BuildConfigField
-            stringField(Fields.SERVICE_URL to "https://api.openweathermap.org/data/")
-            stringField(Fields.SERVICE_API_KEY to "")
-            stringField(Fields.SERVICE_CERTIFICATE_PATH to "")
         }
 
         // pilot
@@ -118,11 +110,6 @@ android {
                 "app_label_name",
                 "${AndroidConfig.APP_NAME}$versionNameSuffix"
             )
-
-            // BuildConfigField
-            stringField(Fields.SERVICE_URL to "https://api.openweathermap.org/data/")
-            stringField(Fields.SERVICE_API_KEY to "")
-            stringField(Fields.SERVICE_CERTIFICATE_PATH to "")
         }
 
         // store
@@ -136,11 +123,6 @@ android {
                 "app_label_name",
                 "${AndroidConfig.APP_NAME}$versionNameSuffix"
             )
-
-            // BuildConfigField
-            stringField(Fields.SERVICE_URL to "https://api.openweathermap.org/data/")
-            stringField(Fields.SERVICE_API_KEY to "")
-            stringField(Fields.SERVICE_CERTIFICATE_PATH to "")
         }
     }
 
@@ -207,6 +189,7 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.coil)
     implementation(libs.multidex)
+    implementation(libs.paging)
     implementation(libs.work.manager.runtime)
 
     testImplementation(libs.bundles.unitTest)

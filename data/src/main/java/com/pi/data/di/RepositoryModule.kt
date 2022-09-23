@@ -1,7 +1,7 @@
 package com.pi.data.di
 
 import com.pi.data.network.MainClient
-import com.pi.data.persistence.AppDao
+import com.pi.data.network.MainService
 import com.pi.data.repository.MainRepository
 import dagger.Module
 import dagger.Provides
@@ -18,12 +18,12 @@ object RepositoryModule {
     @ViewModelScoped
     fun provideMainRepository(
         mainClient: MainClient,
-        appDao: AppDao,
+        mainService: MainService,
         coroutineDispatcher: CoroutineDispatcher
     ): MainRepository {
         return MainRepository(
             mainClient = mainClient,
-            appDao = appDao,
+            mainService = mainService,
             ioDispatcher = coroutineDispatcher
         )
     }

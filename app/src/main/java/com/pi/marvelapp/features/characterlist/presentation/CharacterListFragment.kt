@@ -1,15 +1,18 @@
 package com.pi.marvelapp.features.characterlist.presentation
 
+import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.GridLayoutManager
 import com.pi.marvelapp.R
-import com.pi.marvelapp.core.binding.ViewBinding.visible
 import com.pi.marvelapp.core.extensions.changeUiState
 import com.pi.marvelapp.core.extensions.observe
 import com.pi.marvelapp.core.navigation.PageName
 import com.pi.marvelapp.core.platform.BaseFragment
+import com.pi.marvelapp.core.utils.AppConstants.Companion.THIRTY_INT
 import com.pi.marvelapp.databinding.FragmentCharacterListBinding
 import com.pi.marvelapp.features.characterlist.domain.viewmodel.CharacterListViewModel
-import com.pi.marvelapp.features.characterlist.presentation.adapter.CharacterAdapter
+import com.pi.marvelapp.features.characterlist.presentation.paging.CharacterPagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 /**
  * A @Fragment for showing all Marvel Characters
@@ -25,7 +28,7 @@ class CharacterListFragment :
      */
     override fun getScreenKey(): String = PageName.PreLogin.CHARACTER_LIST_PAGE
 
-    private lateinit var characterAdapter: CharacterAdapter
+    private lateinit var characterAdapter: CharacterPagingAdapter
 
     /**
      * Initialize view informations and observing recyclerview gestures
@@ -36,15 +39,16 @@ class CharacterListFragment :
             viewmodel = viewModel
 
             // Setup Adapter with Recyclerview
-            characterAdapter = CharacterAdapter()
+            characterAdapter = CharacterPagingAdapter()
             notesRecyclerView.setHasFixedSize(true)
+            notesRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
             notesRecyclerView.adapter = characterAdapter
 
             /**
              * Adapter click listeners
              */
-            characterAdapter.setOnDebouncedClickListener { note ->
-                viewModel.navigateToCharacterDetails(character = note)
+            characterAdapter.setOnDebouncedClickListener { characterInfo ->
+                viewModel.navigateToCharacterDetails(characterInfo = characterInfo)
             }
         }
     }
@@ -53,7 +57,7 @@ class CharacterListFragment :
      * Get all Notes from AppDb
      */
     override fun getViewData() {
-        //viewModel.fetchAllCharacters()
+        viewModel.fetchAllCharacters(limit = THIRTY_INT)
     }
 
     /**
@@ -65,9 +69,9 @@ class CharacterListFragment :
             binding.apply {
                 progressBar.changeUiState(uiState = viewState.uiState)
 
-                notesRecyclerView.visible = viewState.characterList.isNotEmpty()
-
-                characterAdapter.submitList(viewState.characterList)
+                viewmodel?.viewModelScope?.launch {
+                    viewState.characterList?.let { characterAdapter.submitData(it) }
+                }
             }
         }
     }
