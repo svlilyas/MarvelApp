@@ -3,9 +3,7 @@ package com.pi.data
 import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
-import com.pi.data.persistence.AppDao
-import com.pi.data.persistence.AppDatabase
-import com.pi.data.remote.response.Character
+import com.pi.data.remote.response.CharacterResponse
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
@@ -38,11 +36,11 @@ class AppDaoTest {
         val fakeTitle = "Title"
         val fakeDescription = "Description"
         val fakeImageUrl = "ImageUrl"
-        val fakeCharacter =
-            Character(title = fakeTitle, description = fakeDescription, imageUrl = fakeImageUrl)
+        val fakeCharacterResponse =
+            CharacterResponse(title = fakeTitle, description = fakeDescription, imageUrl = fakeImageUrl)
 
         //act
-        appDao.insert(fakeCharacter)
+        appDao.insert(fakeCharacterResponse)
         val lastNote = appDao.getAllCharacters().first()
 
         //assert
@@ -58,11 +56,11 @@ class AppDaoTest {
         val fakeTitle = "Title"
         val fakeDescription = "Description"
         val fakeImageUrl = "ImageUrl"
-        val fakeCharacter =
-            Character(title = fakeTitle, description = fakeDescription, imageUrl = fakeImageUrl)
+        val fakeCharacterResponse =
+            CharacterResponse(title = fakeTitle, description = fakeDescription, imageUrl = fakeImageUrl)
 
         //act
-        appDao.insert(fakeCharacter)
+        appDao.insert(fakeCharacterResponse)
         val lastNote = appDao.getAllCharacters().first()
 
         //update note data
@@ -74,7 +72,7 @@ class AppDaoTest {
             description = fakeUpdatedDescription,
             imageUrl = fakeUpdatedImageUrl
         )
-        appDao.updateWithTimeStamp(character = fakeUpdatedNote)
+        appDao.updateWithTimeStamp(characterResponse = fakeUpdatedNote)
         val lastNoteUpdated = appDao.getAllCharacters().first()
 
         //assert Updated Note
@@ -90,15 +88,15 @@ class AppDaoTest {
         val fakeTitle = "Title"
         val fakeDescription = "Description"
         val fakeImageUrl = "ImageUrl"
-        val fakeCharacter =
-            Character(title = fakeTitle, description = fakeDescription, imageUrl = fakeImageUrl)
+        val fakeCharacterResponse =
+            CharacterResponse(title = fakeTitle, description = fakeDescription, imageUrl = fakeImageUrl)
 
         //act
-        appDao.insert(fakeCharacter)
+        appDao.insert(fakeCharacterResponse)
         val lastNote = appDao.getAllCharacters().first()
 
         //delete note data
-        appDao.delete(character = lastNote)
+        appDao.delete(characterResponse = lastNote)
         val updatedNoteList = appDao.getAllCharacters()
 
         //assert deleted note

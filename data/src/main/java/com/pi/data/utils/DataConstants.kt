@@ -1,6 +1,6 @@
-package com.pi.marvelapp.core.utils
+package com.pi.data.utils
 
-class AppConstants {
+class DataConstants {
     companion object {
         /**
          * DATE FORMATS
@@ -14,7 +14,7 @@ class AppConstants {
         const val ONE_INT: Int = 1
         const val TWO_INT: Int = 2
         const val THREE_INT: Int = 3
-        
+
         const val THIRTY_INT: Int = 30
 
         /**

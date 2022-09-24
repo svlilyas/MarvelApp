@@ -1,10 +1,10 @@
 package com.pi.marvelapp.data
 
-import com.pi.data.remote.response.Character
+import com.pi.data.remote.response.CharacterResponse
 
 object NoteModelFactory {
 
-    private fun getMockNote(): Character = Character(
+    private fun getMockNote(): CharacterResponse = CharacterResponse(
         id = 0,
         title = "",
         description = "",
@@ -13,11 +13,11 @@ object NoteModelFactory {
         imageUrl = "",
     )
 
-    fun getMockNotes(): List<Character> {
-        val characterList = ArrayList<Character>()
+    fun getMockNotes(): List<CharacterResponse> {
+        val characterResponseList = ArrayList<CharacterResponse>()
         repeat(5) {
-            characterList.add(getMockNote())
+            characterResponseList.add(getMockNote())
         }
-        return characterList
+        return characterResponseList
     }
 }

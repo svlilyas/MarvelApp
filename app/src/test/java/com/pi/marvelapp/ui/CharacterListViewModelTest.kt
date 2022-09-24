@@ -52,7 +52,7 @@ class CharacterListViewModelTest {
         Dispatchers.resetMain()
     }
 
-    @Test
+    /*@Test
     fun `Get All Notes Data from usecase (ROOM) return list`(): TestResult = runBlocking {
         Mockito.`when`(characterListUseCase.fetchAllCharacters())
             .thenReturn(flow { emit(NoteModelFactory.getMockNotes()) })
@@ -64,5 +64,5 @@ class CharacterListViewModelTest {
         assertThat(noteList).isNotNull()
         assertThat(noteList).isNotEmpty()
         assertEquals(noteList, NoteModelFactory.getMockNotes())
-    }
+    }*/
 }
