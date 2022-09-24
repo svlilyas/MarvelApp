@@ -1,6 +1,5 @@
 package com.pi.marvelapp.core.binding
 
-import android.graphics.drawable.Drawable
 import android.webkit.URLUtil
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -8,33 +7,27 @@ import coil.load
 import coil.request.CachePolicy
 import com.pi.data.remote.response.CharacterListResponse.Data.CharacterInfo.Thumbnail
 import com.pi.marvelapp.R
-import com.pi.marvelapp.core.binding.ViewBinding.gone
-import com.pi.marvelapp.core.binding.ViewBinding.visible
+import com.pi.marvelapp.core.utils.createThumbnailUrl
 
 object ImageViewBinding {
 
     @JvmStatic
     @BindingAdapter(
-        value = ["app:imageUrl", "app:placeholder", "app:errorDrawable"],
+        value = ["app:imageUrl"],
         requireAll = false
     )
     fun ImageView.loadImage(
         url: String?,
-        placeholder: Drawable?,
-        errorDrawable: Drawable?
     ) {
         if (URLUtil.isValidUrl(url)) {
-            this.visible = true
             this.load(url) {
-                placeholder(placeholder)
-                error(errorDrawable)
+                placeholder(R.drawable.ic_placeholder)
+                error(R.drawable.ic_broken_image)
                 networkCachePolicy(CachePolicy.ENABLED)
                 memoryCachePolicy(CachePolicy.ENABLED)
                 diskCachePolicy(CachePolicy.ENABLED)
                 crossfade(true)
             }
-        } else {
-            this.gone = true
         }
     }
 
@@ -47,7 +40,7 @@ object ImageViewBinding {
         thumb: Thumbnail?
     ) {
 
-        val url = "${thumb?.path?.replace("http", "https")}/portrait_xlarge.${thumb?.extension}"
+        val url = createThumbnailUrl(thumbnail = thumb)
 
         this.load(url) {
             error(R.drawable.ic_placeholder)
