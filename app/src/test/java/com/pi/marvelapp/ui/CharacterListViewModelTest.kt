@@ -1,26 +1,17 @@
 package com.pi.marvelapp.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.google.common.truth.Truth.assertThat
-import com.pi.marvelapp.data.NoteModelFactory
-import com.pi.marvelapp.features.characterlist.domain.usecase.CharacterListUseCase
-import com.pi.marvelapp.features.characterlist.domain.viewmodel.CharacterListViewModel
-import com.pi.marvelapp.utils.ObserverExtension.getOrAwaitValue
-import junit.framework.Assert.assertEquals
+import com.pi.marvelapp.features.characterdetail.domain.usecase.CharacterListUseCase
+import com.pi.marvelapp.features.characterdetail.domain.viewmodel.CharacterListViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.newSingleThreadContext
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.TestResult
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
-import org.junit.Test
 import org.junit.rules.TestRule
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 
 /**

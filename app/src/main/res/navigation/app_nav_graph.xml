@@ -6,5 +6,29 @@
     <fragment
         android:id="@+id/characterListFragment"
         android:name="com.pi.marvelapp.features.characterlist.presentation.CharacterListFragment"
-        android:label="CharacterListFragment" />
+        android:label="CharacterListFragment" >
+        <action
+            android:id="@+id/action_characterListFragment_to_characterDetailFragment"
+            app:destination="@id/characterDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterDetailFragment"
+        android:name="com.pi.marvelapp.features.characterdetail.presentation.CharacterDetailFragment"
+        android:label="CharacterDetailFragment" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="thumbnail_url"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_characterDetailFragment_to_characterListFragment"
+            app:destination="@id/characterListFragment" />
+        <argument
+            android:name="characterId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

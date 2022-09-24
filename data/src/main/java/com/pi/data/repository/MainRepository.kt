@@ -23,31 +23,32 @@ class MainRepository @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher
 ) : Repository {
 
-    /*@WorkerThread
-    fun fetchAllCharacters(
+    @WorkerThread
+    fun fetchCharacterComics(
         limit: Int,
-        offset: Int,
+        characterId: Int,
+        orderBy: String,
+        dateRange: String,
         onStart: () -> Unit,
         onComplete: () -> Unit,
         onError: (String?) -> Unit
     ) = flow {
-        *//**
+        /**
          * fetches a list of [CharacterListResponse] from the network and getting [ApiResponse] asynchronously.
          * @see [suspendOnSuccess](https://github.com/skydoves/sandwich#apiresponse-extensions-for-coroutines)
-         *//*
-        val response = mainClient.fetchCharacterList(limit = limit, offset = offset)
-        var characterList = emptyList<CharacterInfo>()
+         */
+        val response = mainClient.fetchCharacterComics(
+            limit = limit,
+            characterId = characterId,
+            orderBy = orderBy,
+            dateRange = dateRange
+        )
         response.suspendOnSuccess {
-            data.data.results.let {
-                if (it.isNotEmpty()) {
-                    characterList = it
-                }
-                emit(characterList)
-            }
+            emit(data)
         }.onFailure { // handles the all error cases from the API request fails.
             onError(message())
         }
-    }.onStart { onStart() }.onCompletion { onComplete() }.flowOn(ioDispatcher)*/
+    }.onStart { onStart() }.onCompletion { onComplete() }.flowOn(ioDispatcher)
 
     @WorkerThread
     fun fetchAllCharacters(

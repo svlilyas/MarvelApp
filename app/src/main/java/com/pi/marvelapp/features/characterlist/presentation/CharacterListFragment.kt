@@ -8,6 +8,7 @@ import com.pi.marvelapp.core.extensions.observe
 import com.pi.marvelapp.core.navigation.PageName
 import com.pi.marvelapp.core.platform.BaseFragment
 import com.pi.marvelapp.core.utils.AppConstants.Companion.THIRTY_INT
+import com.pi.marvelapp.core.utils.AppConstants.Companion.TWO_INT
 import com.pi.marvelapp.databinding.FragmentCharacterListBinding
 import com.pi.marvelapp.features.characterlist.domain.viewmodel.CharacterListViewModel
 import com.pi.marvelapp.features.characterlist.presentation.paging.CharacterPagingAdapter
@@ -31,7 +32,7 @@ class CharacterListFragment :
     private lateinit var characterAdapter: CharacterPagingAdapter
 
     /**
-     * Initialize view informations and observing recyclerview gestures
+     * Initialize view information
      */
     override fun setUpViews() {
         super.setUpViews()
@@ -40,12 +41,12 @@ class CharacterListFragment :
 
             // Setup Adapter with Recyclerview
             characterAdapter = CharacterPagingAdapter()
-            notesRecyclerView.setHasFixedSize(true)
-            notesRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
-            notesRecyclerView.adapter = characterAdapter
+            characterRecyclerView.setHasFixedSize(true)
+            characterRecyclerView.layoutManager = GridLayoutManager(requireContext(), TWO_INT)
+            characterRecyclerView.adapter = characterAdapter
 
             /**
-             * Adapter click listeners
+             * Adapter click listener
              */
             characterAdapter.setOnDebouncedClickListener { characterInfo ->
                 viewModel.navigateToCharacterDetails(characterInfo = characterInfo)
@@ -54,14 +55,14 @@ class CharacterListFragment :
     }
 
     /**
-     * Get all Notes from AppDb
+     * Get all Marvel Characters with limit and offset - Pagination
      */
     override fun getViewData() {
         viewModel.fetchAllCharacters(limit = THIRTY_INT)
     }
 
     /**
-     * Observing View Events and noteList to fill the View
+     * Observing View Events and Adapter's list
      */
     override fun observeData() {
 
