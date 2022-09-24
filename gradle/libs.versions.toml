@@ -42,6 +42,7 @@ truth = "1.1.3"
 robolectric = "4.7.3"
 paging = "3.+"
 glide = "4.+"
+turbine = "0.7.0"
 
 [libraries]
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
@@ -114,6 +115,7 @@ junit-ui = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "junit
 junit-ktx = { module = "androidx.test.ext:junit-ktx", version.ref = "junit-ktx" }
 google-truth = { module = "com.google.truth:truth", version.ref = "truth" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 work-manager-runtime = { module = "androidx.work:work-runtime-ktx", version.ref = "work-manager" }
 
@@ -130,7 +132,7 @@ lifecycle = ["viewmodel-ktx", "livedata-ktx", "lifecycle-common"]
 navigation = ["navigation-fragment", "navigation-dynamic", "navigation-ui-ktx"]
 moshi = ["moshi-kotlin", "moshi-codegen"]
 instrumentationTest = ["junit-core", "google-truth", "espresso", "junit-ui"]
-unitTest = ["room-testing", "junit-core", "espresso", "mockk", "junit-ktx", "robolectric", "arch", "test-coroutines", "google-truth", "mockito-inline"]
+unitTest = ["room-testing", "junit-core", "espresso", "mockk", "junit-ktx", "robolectric", "arch", "test-coroutines", "google-truth", "mockito-inline","turbine"]
 
 
 [plugins]
