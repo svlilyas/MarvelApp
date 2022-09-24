@@ -1,19 +1,19 @@
-package com.pi.marvelapp.features.characterlist.presentation.adapter
+package com.pi.marvelapp.features.characterdetail.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.pi.data.remote.response.CharacterListResponse.Data.CharacterInfo
+import com.pi.data.remote.response.CharacterComicsResponse
 import com.pi.marvelapp.core.extensions.setOnDebouncedClickListener
 import com.pi.marvelapp.core.platform.BaseListAdapter
 import com.pi.marvelapp.core.platform.BaseViewHolder
-import com.pi.marvelapp.databinding.ItemCharacterListBinding
+import com.pi.marvelapp.databinding.ItemComicListBinding
 
 /**
  * Adapter with viewModel to manage events
  * and DiffUtil to change the list without notifyData
  */
-class CharacterAdapter() : BaseListAdapter<CharacterInfo>(
+class ComicAdapter : BaseListAdapter<CharacterComicsResponse.Data.Result>(
     itemsSame = { old, new -> old.id == new.id },
     contentsSame = { old, new -> old == new }
 ) {
@@ -23,33 +23,33 @@ class CharacterAdapter() : BaseListAdapter<CharacterInfo>(
         inflater: LayoutInflater,
         viewType: Int
     ): RecyclerView.ViewHolder {
-        return NoteViewHolder(parent, inflater)
+        return ComicViewHolder(parent, inflater)
     }
 
     /**
-     * Binding Note Item to its view
+     * Binding Comic Item to its view
      */
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is NoteViewHolder -> {
+            is ComicViewHolder -> {
                 holder.bind(getItem(position))
             }
         }
     }
 
     /**
-     * Binding Note model with its view - @DataBinding
+     * Binding Comic model with its view - @DataBinding
      */
-    internal inner class NoteViewHolder(parent: ViewGroup, inflater: LayoutInflater) :
-        BaseViewHolder<ItemCharacterListBinding>(
-            ItemCharacterListBinding.inflate(inflater, parent, false)
+    internal inner class ComicViewHolder(parent: ViewGroup, inflater: LayoutInflater) :
+        BaseViewHolder<ItemComicListBinding>(
+            ItemComicListBinding.inflate(inflater, parent, false)
         ) {
-        fun bind(characterInfo: CharacterInfo) {
+        fun bind(comicInfo: CharacterComicsResponse.Data.Result) {
             binding.apply {
-                item = characterInfo
+                item = comicInfo
 
                 itemView.setOnDebouncedClickListener {
-                    debouncedClickListener?.invoke(characterInfo)
+                    debouncedClickListener?.invoke(comicInfo)
                 }
 
                 executePendingBindings()

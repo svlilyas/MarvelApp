@@ -1,15 +1,14 @@
 package com.pi.marvelapp.features
 
 import android.os.Bundle
-import android.widget.Toast
 import com.pi.marvelapp.R
-import com.pi.marvelapp.databinding.ActivityNavHostBinding
 import com.pi.marvelapp.core.extensions.navigateSafe
 import com.pi.marvelapp.core.extensions.observe
 import com.pi.marvelapp.core.navigation.NavManager
 import com.pi.marvelapp.core.network.ConnectivityObserver
 import com.pi.marvelapp.core.platform.BaseActivity
 import com.pi.marvelapp.core.platform.ProjectApplication.Companion.connectivityObserver
+import com.pi.marvelapp.databinding.ActivityNavHostBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -40,7 +39,7 @@ class NavHostActivity : BaseActivity<ActivityNavHostBinding, MainViewModel>(
                 ConnectivityObserver.ConnectionStatus.Lost -> "Lost"
             }
 
-            Toast.makeText(this@NavHostActivity, status, Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this@NavHostActivity, status, Toast.LENGTH_SHORT).show()
         }
     }
 
