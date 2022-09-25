@@ -5,5 +5,9 @@ import javax.inject.Inject
 
 class CharacterListUseCase @Inject constructor(private val mainRepository: MainRepository) {
 
-    fun fetchAllCharacters() = mainRepository.fetchAllCharacters({}, {}) {}
+    fun fetchAllCharacters(
+        limit: Int
+    ) = mainRepository.fetchAllCharacters(
+        limit = limit
+    )
 }

@@ -11,12 +11,12 @@
 
         <variable
             name="item"
-            type="com.pi.data.remote.response.Character" />
+            type="com.pi.data.remote.response.CharacterListResponse.Data.CharacterInfo" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
         android:layout_marginVertical="4dp"
         app:cardBackgroundColor="@color/white"
@@ -25,7 +25,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="wrap_content"
             android:padding="3dp">
 
             <com.pi.marvelapp.core.view.AspectRatioImageView
@@ -34,64 +34,30 @@
                 android:layout_height="0dp"
                 android:scaleType="centerCrop"
                 app:ari_ratio="1"
-                app:errorDrawable="@{@drawable/ic_broken_image}"
-                app:imageUrl="@{item.imageUrl}"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:placeholder="@{@drawable/ic_placeholder}"
+                app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+                app:layout_constraintVertical_bias="0"
+                app:thumbInfo="@{item.thumbnail}"
                 tools:src="@drawable/ic_placeholder" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/titleTextView"
                 android:layout_width="@dimen/margin_0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:ellipsize="end"
+                android:gravity="center"
                 android:maxLines="2"
-                android:text="@{item.title}"
+                android:text="@{item.name}"
                 android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/noteImageView"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Note Title" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/descriptionTextView"
-                android:layout_width="@dimen/margin_0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:ellipsize="end"
-                android:maxLines="4"
-                android:text="@{item.description}"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/noteImageView"
-                app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-                tools:text="Note Description" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/editedTagTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_tag_red"
-                android:padding="5dp"
-                android:text="@string/edited"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/createdDateTextView"
-                android:layout_width="@dimen/margin_0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="09.10.2022 Saturday" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

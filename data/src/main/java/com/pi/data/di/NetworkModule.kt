@@ -7,6 +7,8 @@ import com.pi.data.network.interceptor.AuthenticationInterceptor
 import com.pi.data.network.interceptor.HttpRequestInterceptor
 import com.pi.data.network.interceptor.UserAgentInterceptor
 import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,6 +23,11 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
+    @Provides
+    @Singleton
+    fun provideMoshi(): Moshi =
+        Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
 
     @Provides
     @Singleton
@@ -45,11 +52,11 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(BuildConfig.SERVICE_URL)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
             .build()
     }
@@ -74,7 +81,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideAuthenticationInterceptor(): AuthenticationInterceptor =
-        AuthenticationInterceptor(BuildConfig.SERVICE_API_KEY)
+        AuthenticationInterceptor(BuildConfig.SERVICE_API_KEY,BuildConfig.PRIVATE_API_KEY)
 
     @Provides
     @Singleton
